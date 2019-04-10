@@ -1,0 +1,39 @@
+{% extends 'main/base_accounts.html' %}
+{% block title %}申请成为司机{% endblock %}
+{% block content %}
+<div id="app">
+        <table class="table table-hover form-group">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>项目</th>
+                    <th>值</th>
+                </tr>
+            </thead>
+        <tbody>
+            <tr>
+                <td>0</td>
+                <td>车牌号</td>
+                <td><input v-model="car_num" class="form-control"></input> </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>车牌照片</td>
+                <td><input v-model="car_num_photo" class="form-control"></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>身份证号</td>
+                <td><input v-model="id_num" class="form-control"></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>身份证照片</td>
+                <td><input v-model="id_num_photo" class="form-control"></td>
+            </tr>
+
+        </tbody>
+        </table>
+        <button @click="submit" class="btn btn-primary">申请</button>
+    </div>
+{% endblock %}

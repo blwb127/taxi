@@ -1,0 +1,49 @@
+{% extends 'main/base_accounts.html' %}
+{% block title %}个人信息{% endblock %}
+{% block content %}
+    <div id="app">
+        <table class="table table-hover form-group">
+            <thead>
+                <tr>
+                    <th>编号</th>
+                    <th>项目</th>
+                    <th>值</th>
+                </tr>
+            </thead>
+        <tbody>
+            <tr>
+                <td>0</td>
+                <td>账户不可改</td>
+                <td><span v-text="email" class="form-control"></span> </td>
+            </tr>
+            <tr>
+                <td>1</td>
+                <td>姓名</td>
+                <td><input v-model="name" class="form-control"></td>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td>性别</td>
+                <td><input v-model="sex" class="form-control"></td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td>出生日期</td>
+                <td><input v-model="birthday" class="form-control"></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>居住地</td>
+                <td><input v-model="live_place" class="form-control"></td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td>手机号</td>
+                <td><input v-model="phone" class="form-control"></td>
+            </tr>
+        </tbody>
+        </table>
+        <button @click="submit" class="btn btn-primary">保存修改</button>
+    </div>
+
+{% endblock %}
