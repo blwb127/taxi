@@ -3,7 +3,7 @@
 {% block content %}
     <div class="container">
         <div class="col-md-4 col-md-offset-4">
-          <form class='form-register' action="/passenger/register/" method="post">
+          <form class='form-register' action="/driver/register/" method="post">
 
               {% if message %}
                   <div class="alert alert-warning">{{ message }}</div>
@@ -11,7 +11,7 @@
 
               {% csrf_token %}
 
-              <h2 class="text-center">欢迎乘客注册</h2>
+              <h2 class="text-center">欢迎司机注册</h2>
               <div class="form-group">
                   {{ register_form.username.label_tag }}
                   {{ register_form.username}}
@@ -32,10 +32,10 @@
                   {{ register_form.user_num.label_tag }}
                   {{ register_form.user_num }}
               </div>
-              <div class="form-group">
-                  {{ register_form.sex.label_tag }}
-                  {{ register_form.sex }}
-              </div>
+{#              <div class="form-group">#}
+{#                  {{ register_form.sex.label_tag }}#}
+{#                  {{ register_form.sex }}#}
+{#              </div>#}
 
               <button type="reset" class="btn btn-default pull-left">重置</button>
               <button type="submit" class="btn btn-primary pull-right">提交</button>

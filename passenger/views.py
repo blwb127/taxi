@@ -11,10 +11,14 @@ import json
 #     h = sha256(string.encode()+salt.encode())
 #     return h.hexdigest()
 
+def index(request):
+    pass
+    return render(request, 'passenger/index.html')
+
 
 def login(request):
     if request.session.get('is_login', None):
-        return render_to_response('passenger/login.html')
+        return render_to_response('passenger/index.html')
 
     if request.method == "POST":
         login_form = forms.UserForm(request.POST)
@@ -24,16 +28,20 @@ def login(request):
             password = login_form.cleaned_data['password']
             try:
                 user = Passenger.objects.get(user_name=user_name)
-                if user.password == password:
-                    request.session['is_login'] = True
-                    request.session['user_id'] = user.id
-                    request.session['user_name'] = user.user_name
-                    return render_to_response('passenger/accounts_profile.html')
-                else:
-                    message = "密码不正确！"
             except:
                 message = "用户不存在！"
-        return render(request, 'passenger/login.html', locals())
+                return render(request, 'passenger/login.html', locals())
+
+            if user.password == password:
+                request.session['is_login'] = True
+                request.session['user_id'] = user.id
+                request.session['user_name'] = user.user_name
+                return render_to_response('passenger/index.html')
+            else:
+                message = "密码不正确！"
+                return render(request, 'passenger/login.html', locals())
+        else:
+            return render(request, 'passenger/login.html', locals())
 
     login_form = forms.UserForm()
     return render(request, 'passenger/login.html', locals())
@@ -80,7 +88,7 @@ def register(request):
                     user_num=user_num,
                 )
 
-                return render_to_response('passenger/login.html')  # 自动跳转到登录页面
+                return render_to_response('passenger/index.html')  # 自动跳转到登录页面
             return render(request, 'passenger/register.html', locals())
     register_form = forms.RegisterForm()
     return render(request, 'passenger/register.html', locals())
@@ -88,13 +96,13 @@ def register(request):
 def logout(request):
     if not request.session.get('is_login', None):
         # 如果本来就未登录，也就没有登出一说
-        return render_to_response("passenger/login.html")
+        return render_to_response("passenger/index.html")
     request.session.flush()
     # 或者使用下面的方法
     # del request.session['is_login']
     # del request.session['user_id']
     # del request.session['user_name']
-    return render_to_response("main/base.html")
+    return render_to_response("driver/index.html")
 
 def accounts_profile(request):
     # if request.method == 'POST':
